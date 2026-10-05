@@ -34,9 +34,14 @@ def _yahoo(tickers: list[str]) -> pd.DataFrame:
     import yfinance as yf
 
     df = yf.download(tickers, period="max", interval="1mo", auto_adjust=True, progress=False)
+    if df is None or df.empty or "Close" not in df:
+        raise RuntimeError("Yahoo returned no data (blocked network, rate limit, or ticker change)")
     close = df["Close"]
     if isinstance(close, pd.Series):
         close = close.to_frame(tickers[0])
+    close = close.dropna(axis=1, how="all")
+    if close.shape[1] == 0 or len(close) < 12:
+        raise RuntimeError("Yahoo returned no usable history")
     return close
 
 
@@ -55,8 +60,10 @@ def refresh(timeout: int = 30) -> dict:
     except Exception as e:  # noqa: BLE001
         status["Yahoo ^GSPC (month-end S&P 500)"] = f"failed: {e}"
     try:
-        _yahoo(ACTUAL_TICKERS).to_csv(CACHE / "actuals.csv")
-        status["Yahoo ETF history (calibration)"] = "ok"
+        a = _yahoo(ACTUAL_TICKERS)
+        a.to_csv(CACHE / "actuals.csv")
+        missing = sorted(set(ACTUAL_TICKERS) - set(a.columns))
+        status["Yahoo ETF history (calibration)"] = "ok" if not missing else f"ok (no data for: {', '.join(missing)})"
     except Exception as e:  # noqa: BLE001
         status["Yahoo ETF history (calibration)"] = f"failed: {e}"
     return status
@@ -65,4 +72,4 @@ def refresh(timeout: int = 30) -> dict:
 if __name__ == "__main__":
     st = refresh()
     print(json.dumps(st, indent=2))
-    sys.exit(0 if all(v == "ok" for v in st.values()) else 1)
+    sys.exit(0 if all(v.startswith("ok") for v in st.values()) else 1)

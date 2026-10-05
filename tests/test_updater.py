@@ -52,3 +52,17 @@ def test_check_reports_error_when_offline(monkeypatch):
     monkeypatch.setattr(updater, "remote_commit", lambda *a, **k: (_ for _ in ()).throw(OSError("offline")))
     res = updater.check()
     assert res["error"] and not res["update_available"]
+
+
+def test_live_refresh_never_reports_ok_on_empty_yahoo(tmp_path, monkeypatch):
+    import pandas as pd
+
+    from irasim import live
+
+    monkeypatch.setattr(live, "CACHE", tmp_path)
+    monkeypatch.setattr(live, "_fred", lambda *a, **k: (_ for _ in ()).throw(OSError("blocked")))
+    import yfinance as yf
+    monkeypatch.setattr(yf, "download", lambda *a, **k: pd.DataFrame())
+    st = live.refresh()
+    assert all(v.startswith("failed") for v in st.values()), st
+    assert not list(tmp_path.glob("*.csv"))

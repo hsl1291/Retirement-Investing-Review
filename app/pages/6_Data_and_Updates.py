@@ -44,7 +44,7 @@ if st.button("Refresh live data (needs internet)"):
     with st.spinner("Downloading…"):
         res = live.refresh()
     for k, v in res.items():
-        (st.success if v == "ok" else st.error)(f"{k}: {v}")
+        (st.success if v.startswith("ok") else st.error)(f"{k}: {v}")
     st.cache_data.clear()
     st.info("Reload the page to use the new data.")
 

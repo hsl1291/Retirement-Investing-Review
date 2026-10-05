@@ -8,5 +8,3 @@ textColor = "#0b0b0b"
 [browser]
 gatherUsageStats = false
 
-[server]
-headless = false

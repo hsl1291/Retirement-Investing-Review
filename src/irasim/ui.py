@@ -148,7 +148,7 @@ def style(fig, height=420, logy=False, yfmt=None):
         legend=dict(orientation="h", y=-0.18, x=0, font=dict(color=INK)),
         margin=dict(l=10, r=10, t=30, b=10))
     fig.update_xaxes(showgrid=False, linecolor=GRID, tickcolor=GRID)
-    fig.update_yaxes(gridcolor=GRID, zeroline=False, type="log" if logy else "linear",
+    fig.update_yaxes(gridcolor=GRID, zeroline=False, automargin=True, type="log" if logy else "linear",
                      tickformat=yfmt)
     return fig
 

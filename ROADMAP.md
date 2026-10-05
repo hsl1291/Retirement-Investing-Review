@@ -7,6 +7,21 @@
 
 ---
 
+## Status (app v0.1.0)
+
+| Phase | State |
+|---|---|
+| 1 Data layer | **Partial.** Bundled public data + live refresh (FRED T-bill, Yahoo). Live path is **untested end to end** (the dev sandbox blocks those hosts). Trend sleeve is an illustrative proxy. |
+| 2 Backtest engine | Built, unit-tested. |
+| 3 Monte Carlo | Built (block bootstrap, real dollars, bond-tailwind haircut). |
+| 4 Tax module | Built (2026 brackets, RMD 75, pro-rata, conversion strategies). Needs your filing/income/state inputs. |
+| 5 Optimizer | Built (grid search, 4 objectives, drawdown cap, leverage sweep). Real-vs-proxy calibration pending live data. |
+| 6 Report/app | **Streamlit app**, zip-installable, self-updating (see README). |
+
+**Next:** run the live refresh on your machine and check *Data and Updates → Calibration* (synthetic vs real
+UPRO/TMF/UGL tracking). Do not rely on any output until tracking error is small. Replace the trend proxy
+with a real series. Re-run Roth analysis with portfolio-bootstrapped returns.
+
 ## 0. Answers so far
 
 | # | Question | Answer | Consequence |
