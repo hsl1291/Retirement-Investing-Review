@@ -1,4 +1,4 @@
-"""Launcher: self-update -> make sure dependencies match -> start the app.
+"""Long Haul launcher: self-update -> make sure dependencies match -> start the app.
 
     python run.py              normal start
     python run.py --no-update  skip the update check
@@ -29,6 +29,22 @@ def ensure_deps() -> None:
     stamp.write_text(h)
 
 
+def open_when_ready(port: str, timeout_s: int = 90) -> None:
+    """Open the browser only once the server answers (first start can take a while)."""
+    import time
+    import urllib.request
+
+    url = f"http://localhost:{port}"
+    for _ in range(timeout_s * 2):
+        try:
+            urllib.request.urlopen(url + "/_stcore/health", timeout=1)
+            webbrowser.open(url)
+            return
+        except Exception:  # noqa: BLE001 - not up yet
+            time.sleep(0.5)
+    print(f"Server did not respond; open {url} manually.")
+
+
 def main() -> int:
     if "--no-update" not in sys.argv:
         try:
@@ -47,7 +63,7 @@ def main() -> int:
     port = os.environ.get("IRASIM_PORT", "8501")
     # headless avoids Streamlit's first-run email prompt; we open the browser ourselves
     if "--no-browser" not in sys.argv:
-        threading.Timer(3.0, lambda: webbrowser.open(f"http://localhost:{port}")).start()
+        threading.Thread(target=open_when_ready, args=(port,), daemon=True).start()
     extra = [a for a in sys.argv[1:] if a not in ("--no-update", "--no-browser")]
     return subprocess.call([sys.executable, "-m", "streamlit", "run", str(ROOT / "app" / "Home.py"),
                             "--server.headless", "true", "--server.port", port, *extra], env=env)

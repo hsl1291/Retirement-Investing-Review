@@ -1,4 +1,6 @@
-# Leveraged IRA Review
+# Long Haul
+
+*A leveraged-IRA lab for a 34-year hold.*
 
 A local app for reviewing a leveraged Traditional-IRA portfolio (UPRO / KMLM / UGL / TMF) held to
 retirement: historical backtest, Monte Carlo to age 70, portfolio optimizer, and the tax side
@@ -14,8 +16,8 @@ Roadmap: [ROADMAP.md](ROADMAP.md). **Modeling tool, not tax or investment advice
 3. Run the installer once:
    - Windows: double-click **install.bat**
    - Mac/Linux: `bash install.sh`
-   It creates a private environment, installs dependencies, and downloads live market data.
-4. Start the app: **run.bat** (Windows) or `bash run.sh` (Mac/Linux). It opens in your browser.
+   It creates a private environment, installs dependencies, downloads live market data, and **opens the app in your browser** when it finishes.
+4. Next time, start it with **run.bat** (Windows) or `bash run.sh` (Mac/Linux).
 
 ## Updates
 

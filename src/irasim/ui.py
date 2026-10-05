@@ -30,7 +30,7 @@ REBAL = {
 
 
 def setup(title: str):
-    st.set_page_config(page_title=f"{title} · IRA Review", page_icon="📈", layout="wide")
+    st.set_page_config(page_title=f"{title} · Long Haul", page_icon="📈", layout="wide")
     st.title(title)
 
 

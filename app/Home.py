@@ -3,7 +3,8 @@ import streamlit as st
 
 from irasim import tax, ui, updater
 
-ui.setup("Leveraged IRA Review")
+ui.setup("Long Haul")
+st.caption("A leveraged-IRA lab for a 34-year hold")
 under, status = ui.get_data()
 ui.data_banner(status)
 
