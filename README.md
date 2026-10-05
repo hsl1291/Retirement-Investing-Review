@@ -13,9 +13,9 @@ Roadmap: [ROADMAP.md](ROADMAP.md). **Modeling tool, not tax or investment advice
    then unzip anywhere.
 3. Run the installer once:
    - Windows: double-click **install.bat**
-   - Mac/Linux: `./install.sh`
+   - Mac/Linux: `bash install.sh`
    It creates a private environment, installs dependencies, and downloads live market data.
-4. Start the app: **run.bat** (Windows) or `./run.sh` (Mac/Linux). It opens in your browser.
+4. Start the app: **run.bat** (Windows) or `bash run.sh` (Mac/Linux). It opens in your browser.
 
 ## Updates
 
@@ -26,7 +26,7 @@ in `user/` and are never overwritten. You can also check or apply updates from t
 
 - Private repo? Add a GitHub token under *Update settings* (or `user/config.json`).
 - Auto-update runs code from the tracked branch on your machine: only track a repo you control.
-- Skip updating for one run: `run.bat --no-update` / `./run.sh --no-update`.
+- Skip updating for one run: `run.bat --no-update` / `bash run.sh --no-update`.
 
 ## Develop
 

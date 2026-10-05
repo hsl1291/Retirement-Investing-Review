@@ -12,4 +12,4 @@ fi
 mkdir -p user
 echo "Fetching live market data..."
 PYTHONPATH=src .venv/bin/python -m irasim.live || echo "(live data refresh failed; you can retry from the app: Data and Updates)"
-echo; echo "Done. Start the app with ./run.sh"
+echo; echo "Done. Start the app with bash run.sh"
