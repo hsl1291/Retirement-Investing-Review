@@ -7,19 +7,36 @@
 
 ---
 
-## 0. Open questions (answers change the model)
+## 0. Answers so far
 
-| # | Question | Why it matters |
-|---|----------|----------------|
-| Q1 | Traditional, Roth, or a mix? | Decides everything in the tax module. A $10M+ Traditional IRA at 75 means RMDs taxed at the top bracket. A Roth has no RMDs and no tax. |
-| Q2 | How does the $40k get in? A 401k rollover, or annual contributions? | The 2026 IRA contribution limit is $7,500 (verify). $40k of contributions takes about 5 years, unless it comes in as a rollover. |
-| Q3 | Have you held this portfolio through 2022? | From its peak, this mix fell roughly 60–70%. The tester will show the worst case, but the honest question is whether you held, and whether you would again from a larger balance. |
-| Q4 | What does "highest absolute return" mean to you: the **mean**, the **median**, or the **10th-percentile** outcome? | With leverage these three come apart sharply (see §3). Optimizing the mean rewards bets that leave most paths worse off. |
-| Q5 | Which broker holds the account? | Some brokers restrict K-1 commodity pools (UGL) or futures in IRAs. That limits which alternatives are allowed. |
+| # | Question | Answer | Consequence |
+|---|----------|--------|-------------|
+| Q1 | Account type | **Traditional**; wants to understand the backdoor Roth | Tax module centers on conversions + pro-rata |
+| Q2 | $40k source | **Rollover** | Lands in the Traditional IRA → increases the pro-rata problem |
+| Q3 | Behavioral history | Held UPRO/TMF 70/30 through 2022 since HFEA began | Drawdown tolerance is demonstrated, not hypothetical |
+| Q4 | Objective | Wants to see the optimization options | Report median / Kelly / p10 / mean side by side (§3) |
+| Q5 | Broker | **Schwab** | No margin in IRA; leverage only via LETFs, return-stacked funds, or futures (Schwab allows futures in IRAs with approval) |
 
----
+**Still open:**
+- Q6: filing status
+- Q7: current taxable income
+- Q8: state now and expected state in retirement
+- Q9: outside cash available to pay conversion taxes
+- Q10: does your 401k accept roll-ins, and does it have a self-directed brokerage window (Schwab PCRA)?
+- Q11: does your 401k allow after-tax contributions with in-plan Roth conversion (mega backdoor)?
+
+## 0.1 Findings so far (tax; placeholder returns — see `results/roth_conversion_placeholder.txt`)
+
+1. **The backdoor Roth is dead while the IRA holds pre-tax money.** Pro-rata makes 99.1% of a $7,500 backdoor conversion taxable with $806k in the IRA. The only clean fix is to roll the IRA *into a 401k* (401k balances don't count for pro-rata). That only keeps this strategy alive if the 401k has a brokerage window that allows UPRO/TMF/UGL/KMLM.
+2. **Backdoor Roth is small potatoes anyway:** $7.5k/yr vs an $806k balance. The real decisions are (a) partial conversions of the big IRA and (b) a mega backdoor in the 401k, if offered.
+3. **Converting with taxes paid from outside cash is economically the same as adding outside money to this leveraged strategy, sheltered forever.** It raised median after-tax real wealth at 90 by about 30% (7% real scenario) to about 60% (11% real), and won in 62–80% of paths. In a 3% real world it lost about 63% of the time, because you prepaid tax on money that later evaporated. It is a bet on the strategy, not free money.
+4. **Drawdown-triggered conversion is not a free lunch** (correcting my earlier framing). Its median is about the same as converting now; it improves the bad tail and gives up the good tail. Without mean reversion, a dollar converted in a crash has the same expected future as any other dollar.
+5. **Waiting to convert at 70–74 is the worst of the active options** when returns are good. By then RMDs and balances force top-bracket income regardless.
+6. **Never pay conversion tax from the IRA before 59½.** Withheld tax counts as an early distribution and gets the 10% penalty on top.
 
 ## 1. Phase 1 — Data layer
+
+> **Blocked:** the environment's network policy denies fred.stlouisfed.org, query1/query2.finance.yahoo.com, mba.tuck.dartmouth.edu, www.aqr.com. Monthly Shiller S&P/CPI/10y and monthly gold are cached in `data/raw/` from GitHub-hosted public datasets, but there is no T-bill or trend series, so no backtest numbers yet.
 
 **Goal:** return series for every candidate asset that are long enough and honest enough to test a 34-year hold.
 
@@ -105,7 +122,7 @@ Guardrail: an optimizer will overfit to 2009–2021. All optimization runs on th
 
 ## 8. Order of work
 
-1. Answer Q1–Q5
+1. ~~Answer Q1–Q5~~ ✅; Q6–Q11 open
 2. Phase 1 data + calibration ← most of the honesty lives here
 3. Phase 2 engine + tests
 4. Phase 3 Monte Carlo

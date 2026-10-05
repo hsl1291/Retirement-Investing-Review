@@ -1,0 +1,107 @@
+Backdoor Roth with $806k pre-tax IRA: {'contribution': 7500, 'taxable': 7430.854333128457, 'taxable_pct': 0.990780577750461, 'tax_free': 69.14566687154274}
+Backdoor Roth with IRA rolled into 401k: {'contribution': 7500, 'taxable': 0.0, 'taxable_pct': 0.0, 'tax_free': 7500.0}
+
+=== MFJ, $150k wages, $90k other retirement income, no state tax ===
+
+  bear (3% real): after-tax real wealth at 90, vs no conversions
+  strategy                                     p10    median       p90   win%  med tax paid
+  No conversions                         $  0.13M $  3.43M $101.97M    nan  $  0.39M
+  Fill 24% bracket, now to 70            $ -1.06M $  2.18M $166.68M     38  $  0.19M
+  Fill 32% bracket, now to 70            $ -1.18M $  2.16M $166.47M     37  $  0.21M
+  Fill 35% bracket, now to 70            $ -1.34M $  2.03M $166.76M     37  $  0.23M
+  Fill 24% only in 40%+ drawdowns        $ -0.62M $  2.80M $145.00M     40  $  0.16M
+  Fill 32% only in 40%+ drawdowns        $ -0.73M $  2.55M $148.98M     39  $  0.16M
+  Window: fill 32% at ages 70-74         $ -0.02M $  3.18M $116.88M     46  $  0.50M
+  Convert everything this year           $ -1.50M $  1.85M $166.75M     36  $  0.25M
+
+  base (7% real): after-tax real wealth at 90, vs no conversions
+  strategy                                     p10    median       p90   win%  med tax paid
+  No conversions                         $  0.78M $ 19.76M $709.94M    nan  $  3.49M
+  Fill 24% bracket, now to 70            $ -0.48M $ 25.60M $1315.69M     62  $  0.20M
+  Fill 32% bracket, now to 70            $ -0.59M $ 25.68M $1315.46M     62  $  0.21M
+  Fill 35% bracket, now to 70            $ -0.72M $ 25.51M $1315.80M     61  $  0.23M
+  Fill 24% only in 40%+ drawdowns        $ -0.10M $ 25.81M $1005.51M     63  $  0.23M
+  Fill 32% only in 40%+ drawdowns        $ -0.19M $ 25.79M $1066.87M     63  $  0.23M
+  Window: fill 32% at ages 70-74         $  0.40M $ 24.30M $740.62M     62  $  2.47M
+  Convert everything this year           $ -0.85M $ 25.32M $1315.81M     61  $  0.25M
+
+  bull (11% real): after-tax real wealth at 90, vs no conversions
+  strategy                                     p10    median       p90   win%  med tax paid
+  No conversions                         $  4.64M $120.18M $4487.38M    nan  $ 23.65M
+  Fill 24% bracket, now to 70            $  4.09M $194.14M $9557.75M     80  $  0.20M
+  Fill 32% bracket, now to 70            $  4.02M $194.03M $9557.50M     80  $  0.22M
+  Fill 35% bracket, now to 70            $  4.04M $193.83M $9557.91M     80  $  0.23M
+  Fill 24% only in 40%+ drawdowns        $  4.63M $175.09M $6243.99M     79  $  0.49M
+  Fill 32% only in 40%+ drawdowns        $  4.49M $178.39M $6786.67M     78  $  0.39M
+  Window: fill 32% at ages 70-74         $  5.26M $135.56M $4556.45M     76  $ 21.84M
+  Convert everything this year           $  3.83M $193.73M $9557.94M     79  $  0.25M
+
+=== MFJ, $300k wages ===
+
+  bear (3% real): after-tax real wealth at 90, vs no conversions
+  strategy                                     p10    median       p90   win%  med tax paid
+  No conversions                         $  0.13M $  3.43M $101.97M    nan  $  0.39M
+  Fill 24% bracket, now to 70            $ -1.04M $  2.11M $169.60M     38  $  0.20M
+  Fill 32% bracket, now to 70            $ -1.29M $  1.91M $166.53M     36  $  0.22M
+  Fill 35% bracket, now to 70            $ -1.45M $  1.91M $166.37M     36  $  0.25M
+  Fill 24% only in 40%+ drawdowns        $ -0.52M $  2.97M $139.94M     41  $  0.17M
+  Fill 32% only in 40%+ drawdowns        $ -0.74M $  2.67M $144.77M     39  $  0.18M
+  Window: fill 32% at ages 70-74         $ -0.02M $  3.18M $116.88M     46  $  0.50M
+  Convert everything this year           $ -1.63M $  1.71M $166.62M     36  $  0.27M
+
+  base (7% real): after-tax real wealth at 90, vs no conversions
+  strategy                                     p10    median       p90   win%  med tax paid
+  No conversions                         $  0.78M $ 19.76M $709.94M    nan  $  3.49M
+  Fill 24% bracket, now to 70            $ -0.48M $ 25.45M $1281.36M     62  $  0.22M
+  Fill 32% bracket, now to 70            $ -0.67M $ 25.42M $1315.50M     61  $  0.23M
+  Fill 35% bracket, now to 70            $ -0.85M $ 25.39M $1315.39M     61  $  0.25M
+  Fill 24% only in 40%+ drawdowns        $  0.09M $ 25.63M $900.29M     64  $  0.31M
+  Fill 32% only in 40%+ drawdowns        $ -0.20M $ 25.77M $964.17M     62  $  0.28M
+  Window: fill 32% at ages 70-74         $  0.40M $ 24.30M $740.62M     62  $  2.47M
+  Convert everything this year           $ -0.98M $ 25.19M $1315.68M     61  $  0.27M
+
+  bull (11% real): after-tax real wealth at 90, vs no conversions
+  strategy                                     p10    median       p90   win%  med tax paid
+  No conversions                         $  4.64M $120.18M $4487.38M    nan  $ 23.65M
+  Fill 24% bracket, now to 70            $  4.09M $191.59M $9237.60M     80  $  0.25M
+  Fill 32% bracket, now to 70            $  3.91M $194.00M $9557.53M     79  $  0.24M
+  Fill 35% bracket, now to 70            $  3.88M $193.76M $9557.47M     79  $  0.26M
+  Fill 24% only in 40%+ drawdowns        $  4.95M $166.07M $5826.59M     79  $  3.61M
+  Fill 32% only in 40%+ drawdowns        $  4.55M $173.30M $6186.95M     78  $  0.69M
+  Window: fill 32% at ages 70-74         $  5.26M $135.56M $4556.45M     76  $ 21.84M
+  Convert everything this year           $  3.69M $193.59M $9557.80M     79  $  0.27M
+
+=== MFJ, $150k wages, brackets +4pts in future ===
+
+  bear (3% real): after-tax real wealth at 90, vs no conversions
+  strategy                                     p10    median       p90   win%  med tax paid
+  No conversions                         $  0.13M $  3.35M $ 97.92M    nan  $  0.45M
+  Fill 24% bracket, now to 70            $ -1.06M $  2.18M $166.68M     39  $  0.19M
+  Fill 32% bracket, now to 70            $ -1.18M $  2.16M $166.47M     38  $  0.21M
+  Fill 35% bracket, now to 70            $ -1.34M $  2.03M $166.76M     37  $  0.23M
+  Fill 24% only in 40%+ drawdowns        $ -0.62M $  2.77M $144.11M     41  $  0.16M
+  Fill 32% only in 40%+ drawdowns        $ -0.73M $  2.55M $145.09M     40  $  0.16M
+  Window: fill 32% at ages 70-74         $ -0.06M $  3.05M $113.00M     45  $  0.58M
+  Convert everything this year           $ -1.50M $  1.85M $166.75M     37  $  0.25M
+
+  base (7% real): after-tax real wealth at 90, vs no conversions
+  strategy                                     p10    median       p90   win%  med tax paid
+  No conversions                         $  0.78M $ 19.08M $688.30M    nan  $  3.93M
+  Fill 24% bracket, now to 70            $ -0.48M $ 25.60M $1315.69M     64  $  0.20M
+  Fill 32% bracket, now to 70            $ -0.59M $ 25.68M $1315.46M     63  $  0.21M
+  Fill 35% bracket, now to 70            $ -0.72M $ 25.51M $1315.80M     62  $  0.23M
+  Fill 24% only in 40%+ drawdowns        $ -0.10M $ 25.63M $990.93M     64  $  0.23M
+  Fill 32% only in 40%+ drawdowns        $ -0.19M $ 25.65M $1055.94M     63  $  0.23M
+  Window: fill 32% at ages 70-74         $  0.33M $ 23.70M $716.26M     62  $  2.81M
+  Convert everything this year           $ -0.85M $ 25.32M $1315.81M     62  $  0.25M
+
+  bull (11% real): after-tax real wealth at 90, vs no conversions
+  strategy                                     p10    median       p90   win%  med tax paid
+  No conversions                         $  4.52M $116.67M $4331.50M    nan  $ 26.28M
+  Fill 24% bracket, now to 70            $  4.09M $194.14M $9557.75M     81  $  0.20M
+  Fill 32% bracket, now to 70            $  4.02M $194.03M $9557.50M     81  $  0.22M
+  Fill 35% bracket, now to 70            $  4.04M $193.83M $9557.91M     80  $  0.23M
+  Fill 24% only in 40%+ drawdowns        $  4.63M $173.22M $6183.95M     80  $  0.49M
+  Fill 32% only in 40%+ drawdowns        $  4.49M $175.95M $6711.66M     79  $  0.39M
+  Window: fill 32% at ages 70-74         $  5.10M $132.93M $4379.85M     76  $ 24.29M
+  Convert everything this year           $  3.83M $193.73M $9557.94M     80  $  0.25M
