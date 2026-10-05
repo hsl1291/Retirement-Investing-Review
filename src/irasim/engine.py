@@ -42,8 +42,10 @@ def fund_returns(under: pd.DataFrame, fund: Fund, periods_per_year: int,
     return r - fund.expense_ratio / periods_per_year
 
 
-def build_fund_returns(under: pd.DataFrame, tickers, periods_per_year: int) -> pd.DataFrame:
-    return pd.DataFrame({t: fund_returns(under, FUNDS[t], periods_per_year) for t in tickers})
+def build_fund_returns(under: pd.DataFrame, tickers, periods_per_year: int,
+                       funds: dict | None = None) -> pd.DataFrame:
+    funds = funds or FUNDS
+    return pd.DataFrame({t: fund_returns(under, funds[t], periods_per_year) for t in tickers})
 
 
 @dataclass

@@ -8,6 +8,7 @@ from __future__ import annotations
 import itertools
 
 import numpy as np
+import pandas as pd
 
 from .engine import Rebalance, run_backtest
 
@@ -70,15 +71,46 @@ def simplex_grid(n_assets: int, step: float, bounds=None):
 
 def optimize(paths: np.ndarray, tickers, step: float = 0.05, reb: Rebalance | None = None,
              objective: str = "median", max_p_dd80: float | None = None, bounds=None,
-             start: float = 1.0, flows=None, top: int = 10):
-    """Grid search over weights on bootstrapped fund-return paths (n_paths, T, n_assets)."""
+             start: float = 1.0, flows=None, top: int = 10, deflator: np.ndarray | None = None,
+             progress=None):
+    """Grid search over weights on bootstrapped fund-return paths (n_paths, T, n_assets).
+
+    deflator (n_paths, T+1) converts nominal wealth to real before scoring.
+    progress(i, n) is called after each candidate.
+    """
     reb = reb or Rebalance()
+    grid = list(simplex_grid(len(tickers), step, bounds))
     results = []
-    for w in simplex_grid(len(tickers), step, bounds):
+    for i, w in enumerate(grid):
         wealth = run_backtest(paths, w, reb, start_value=start, flows=flows)
+        if deflator is not None:
+            wealth = wealth / deflator
         s = summarize_terminal(wealth, start)
+        if progress:
+            progress(i + 1, len(grid))
         if max_p_dd80 is not None and s["p_dd_over_80"] > max_p_dd80:
             continue
         results.append((OBJECTIVES[objective](s), dict(zip(tickers, np.round(w, 3))), s))
     results.sort(key=lambda x: -x[0])
     return results[:top]
+
+
+def simulate_portfolio(fund_rets: pd.DataFrame, weights: dict, reb: Rebalance, n_paths: int,
+                       years: int, mean_block: int = 24, start: float = 1.0, seed: int = 0) -> dict:
+    """Bootstrap joint monthly fund returns + CPI and run one portfolio.
+
+    fund_rets must contain a 'cpi' column plus one column per fund. Returns nominal and real
+    wealth (n_paths, months+1), the deflator, and annual real returns (n_paths, years).
+    """
+    tick = [c for c in fund_rets.columns if c != "cpi"]
+    rows = fund_rets[tick + ["cpi"]].values
+    months = years * 12
+    paths = block_bootstrap(rows, n_paths, months, mean_block, seed)
+    w = np.array([weights.get(t, 0.0) for t in tick], float)
+    w = w / w.sum()
+    wealth = run_backtest(paths[:, :, :-1], w, reb, start_value=start)
+    defl = np.concatenate([np.ones((n_paths, 1)), np.cumprod(1 + paths[:, :, -1], axis=1)], axis=1)
+    real = wealth / defl
+    ys = real[:, ::12]
+    return dict(wealth=wealth, real=real, deflator=defl, annual_real=ys[:, 1:] / ys[:, :-1] - 1,
+                tickers=tick)
